@@ -12,50 +12,46 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-//        Options options = new Options();
-//
-//        Option encrypt = new Option("e", "encrypt", false, "encrypt");
-//        encrypt.setRequired(false);
-//        options.addOption(encrypt);
-//
-//        Option decrypt = new Option("d", "calculate", false, "calculate");
-//        decrypt.setRequired(false);
-//        options.addOption(decrypt);
-//
-//        Option keys = new Option("k", "keys", true, "path to keys");
-//        keys.setRequired(true);
-//        options.addOption(keys);
-//
-//        Option input = new Option("i", "input", true, "input file");
-//        input.setRequired(true);
-//        options.addOption(input);
-//
-//        Option output = new Option("o", "output", true, "output file");
-//        output.setRequired(true);
-//        options.addOption(output);
-//
-//        CommandLineParser parser = new GnuParser();
-//        HelpFormatter formatter = new HelpFormatter();
-//        CommandLine cmd = null;
-//
-//        try {
-//            cmd = parser.parse(options, args);
-//        } catch (ParseException e) {
-//            System.out.println(e.getMessage());
-//            formatter.printHelp("utility-name", options);
-//
-//            System.exit(1);
-//        }
-//
-//        String inputFilePath = cmd.getOptionValue("input");
-//        String outputFilePath = cmd.getOptionValue("output");
-//        String keysPath = cmd.getOptionValue("keys");
-//        calculate(inputFilePath, outputFilePath, keysPath, cmd.hasOption("e"));
+        Options options = new Options();
 
-        String inputFilePath = "C:\\Users\\Naama\\cipher_short";
-        String outputFilePath = "C:\\Users\\Naama\\message_short";
-        String keysPath = "C:\\Users\\Naama\\key_short";
-        calculate(inputFilePath, outputFilePath, keysPath, true);
+        Option encrypt = new Option("e", "encrypt", false, "encrypt");
+        encrypt.setRequired(false);
+        options.addOption(encrypt);
+
+        Option decrypt = new Option("d", "calculate", false, "calculate");
+        decrypt.setRequired(false);
+        options.addOption(decrypt);
+
+        Option keys = new Option("k", "keys", true, "path to keys");
+        keys.setRequired(true);
+        options.addOption(keys);
+
+        Option input = new Option("i", "input", true, "input file");
+        input.setRequired(true);
+        options.addOption(input);
+
+        Option output = new Option("o", "output", true, "output file");
+        output.setRequired(true);
+        options.addOption(output);
+
+        CommandLineParser parser = new GnuParser();
+        HelpFormatter formatter = new HelpFormatter();
+        CommandLine cmd = null;
+
+        try {
+            cmd = parser.parse(options, args);
+        } catch (ParseException e) {
+            System.out.println(e.getMessage());
+            formatter.printHelp("utility-name", options);
+
+            System.exit(1);
+        }
+
+        String inputFilePath = cmd.getOptionValue("input");
+        String outputFilePath = cmd.getOptionValue("output");
+        String keysPath = cmd.getOptionValue("keys");
+        calculate(inputFilePath, outputFilePath, keysPath, cmd.hasOption("e"));
+
     }
 
     private static void calculate(String inputFilePath, String outputFilePath, String keysPath, boolean isEncrypt) throws IOException{
