@@ -1,3 +1,5 @@
+import java.util.List;
+
 /**
  * Created by Naama on 04/04/2019.
  */
@@ -5,9 +7,9 @@ public class Encryption {
 
 
     private byte[] message;
-    private byte[] keys;
+    private List<byte[]> keys;
 
-    public Encryption(byte[] message, byte[] keys) {
+    public Encryption(byte[] message, List<byte[]> keys) {
         this.message = message;
         this.keys = keys;
     }
@@ -19,14 +21,15 @@ public class Encryption {
     }
 
     private void iterate(int iterationNumber){
-        addRoundKey(iterationNumber);
         shiftRows();
+        addRoundKey(iterationNumber);
+
     }
 
     private void addRoundKey(int keyNumber)
     {
         for(int i = 0; i < 16; i++)
-            message[i] ^= keys[i+16*keyNumber];
+            message[i] ^= keys.get(keyNumber)[i];
     }
 
 

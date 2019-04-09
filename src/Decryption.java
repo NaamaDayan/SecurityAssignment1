@@ -1,19 +1,21 @@
+import java.util.List;
+
 /**
  * Created by Naama on 04/04/2019.
  */
 public class Decryption {
 
     private byte[] cypher;
-    private byte[] keys;
+    private List<byte[]> keys;
 
-    public Decryption(byte[] cypher, byte[] keys) {
+    public Decryption(byte[] cypher, List<byte[]> keys) {
         this.cypher = cypher;
         this.keys = keys;
     }
 
     public byte[] decrypt(){
         for (int iterationNumber = 0; iterationNumber<3; iterationNumber++)
-            iterate(3 - iterationNumber);
+            iterate(2 - iterationNumber);
         return cypher;
     }
     private void iterate(int keyNumber){
@@ -36,6 +38,6 @@ public class Decryption {
 
     private void reverseAddRoundKey(int keyNumber){
         for(int i = 0; i < 16; i++)
-            cypher[i] ^= keys[i+16*keyNumber];
+            cypher[i] ^= keys.get(keyNumber)[i];
     }
 }
